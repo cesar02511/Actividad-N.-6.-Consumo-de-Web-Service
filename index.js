@@ -13,13 +13,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Conexión con PostgreSQL
+// ======================================================
+// CONEXIÓN CON POSTGRESQL - RAILWAY
+// ======================================================
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // ======================================================
@@ -30,6 +31,8 @@ const getUsuario = (request, response) => {
     "SELECT * FROM usuarios ORDER BY id ASC",
     (error, results) => {
       if (error) {
+        console.error("Error al obtener usuarios:", error);
+
         return response.status(500).json({
           error: error.message
         });
@@ -66,6 +69,8 @@ const crearUsuario = (request, response) => {
     [nombre, edad, tipo],
     (error, results) => {
       if (error) {
+        console.error("Error al crear usuario:", error);
+
         return response.status(500).json({
           error: error.message
         });
@@ -95,6 +100,8 @@ const actualizarUsuario = (request, response) => {
     [nombre, edad, tipo, id],
     (error, results) => {
       if (error) {
+        console.error("Error al actualizar usuario:", error);
+
         return response.status(500).json({
           error: error.message
         });
@@ -128,6 +135,8 @@ const eliminarUsuario = (request, response) => {
     [id],
     (error, results) => {
       if (error) {
+        console.error("Error al eliminar usuario:", error);
+
         return response.status(500).json({
           error: error.message
         });
