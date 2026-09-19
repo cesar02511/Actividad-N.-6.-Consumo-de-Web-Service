@@ -69,6 +69,6 @@ Si tu API corre en otro puerto o ruta, edita esta línea en `src/app/services/us
 ```ts
 ```typescript
 private readonly apiUrl =
-  'https://crud-usuarios-production-5e28.up.railway.app/usuarios';
-```
+  'https://tallerapinodejsrestpgjulio-production.up.railway.app/usuarios';
+
 
