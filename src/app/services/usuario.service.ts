@@ -9,7 +9,7 @@ import { Usuario } from '../models/usuario.model';
 export class UsuarioService {
 
   private readonly apiUrl =
-    'https://crud-usuarios-production-5e28.up.railway.app/usuarios';
+    'https://tallerapinodejsrestpgjulio-production.up.railway.app/usuarios';
 
   constructor(private http: HttpClient) {}
 
